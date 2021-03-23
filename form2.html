@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form2</title>
+</head>
+<style>
+    li{
+        list-style-type: none;
+    }
+</style>
+<body>
+    
+
+    <select id="select">
+        <option>ОВиКК</option>
+        <option>ЮГ2</option>
+        <option>ЮГ3</option>
+    </select>
+
+    <select id="time">
+        <option value="http://172.28.141.23:8282/api/v1/1team/">24 часа</option>
+        <option value="http://172.28.141.23:8282/api/v1/7team/">7 Дней</option>
+        <option value="http://172.28.141.23:8282/api/v1/30team/">30 Дней</option>
+    </select>
+
+    <button type="button" value="validate123" id="val-button_f2" onclick="zapros()" class="btn">Найти</button>
+    <button type="submit"  onclick="window.location.reload()">Обновить</button>
+    <table>
+        <tr>
+            <th>CSI</th>
+            <th>Количество оценок</th>
+            <th>Агент ID</th>
+            <th>ФИО</th>
+            <th>Группа</th>
+            <th>Руководитель</th>
+        </tr>
+        
+        <tr >
+            <td id="csi_f2"></td>
+            <td id="point_f2"></td>
+            <td id="agent_Id_f2"></td>
+            <td id="name_f2"></td>
+            <td id="group_f2"></td>
+            <td id="manag_f2"></td>
+        </tr>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+  </head>
+  <style>
+      table{
+          border:1px solid #000;
+      }
+  </style>
+  <body>
+
+    <div id="like_button_container"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>
+
+    <script type="text/babel" >
+
+const e = React.createElement;
+const API = 'http://172.28.141.23:8282/api/v1/7team/ЮГ1';
+
+class App extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+           hits: []
+        };
+    }
+
+    componentWillMount() {
+        fetch(API)
+          .then(response => response.json())
+          .then(data => this.setState({ hits: data }));
+    }
+    another(){
+        alert('djaiosdj')
+    }
+
+    render() {
+        const { hits } = this.state;
+
+        console.log(this.state.hits);
+        return (
+          <div>
+            <button onClick={this.another}>add</button>
+            <table>
+            {hits.map(hit =>
+                <tr>
+                <td>{hit[2]}</td>
+                <td>{hit[4]}</td>
+                </tr>
+   
+            )}
+            </table>
+          
+          </div>
+        );
+    }
+}
+
+const domContainer = document.querySelector('#like_button_container');
+ReactDOM.render(e(App), domContainer);
+    </script>
+
+  </body>
+</html>

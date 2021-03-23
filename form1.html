@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form1</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+<style>
+    html,body{
+        padding: 0;
+        margin: 0;
+    }
+    .forms {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .form_1 {
+        padding-top: 20px;
+        overflow-y: scroll;
+        height: 500px;
+        background-color: aquamarine;
+    }
+
+    .form_1::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 5px;
+    }
+
+    .form_1::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: #ffcd00;
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .form__head {
+        width: 651px;
+        height: 20px;
+        background-color: #fff;
+    }
+
+    .form_1 {
+        width: 661px;
+        position: relative;
+    }
+
+    .form_2 {
+        width: 642px;
+        background-color: brown;
+    }
+
+    .form_3 {
+        width: 411px;
+        background-color: cornflowerblue;
+    }
+
+    .forms li {
+        margin: 0 5px;
+        list-style-type: none;
+        text-align: center;
+    }
+
+    input[type=text] {
+        border: none;
+    }
+
+    .message:focus-visible {
+        background-color: #fff;
+        border: none;
+
+    }
+
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+    #p_prldr{
+        display: none;
+position: absolute;
+width: 100%;
+height: 100%;
+background: #9A12B3;
+z-index: 30;}
+ 
+.contpre small{font-size:25px;}
+ 
+.contpre{
+width: 250px;
+height: 100px;
+position: absolute;
+left: 50%;top: 48%;
+margin-left:-125px;
+margin-top:-75px;
+color:#fff;
+font-size:40px;
+letter-spacing:-2px;
+text-align:center;
+line-height:35px;}
+ 
+#p_prldr .svg_anm {
+position: absolute;
+width: 41px;
+height: 41px;
+background: url(images/oval.svg) center center no-repeat;
+background-size:41px;    
+margin: -16px 0 0 -16px;}
+</style>
+
+<body>
+    
+
+    <div class="forms">
+        <div class="form_1" id="form_1">
+            <div id="p_prldr"><div class="contpre"><span class="svg_anm"><svg version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                <rect fill="none" stroke="#fff" stroke-width="4" x="25" y="25" width="50" height="50">
+               <animateTransform attributeName="transform" dur="0.5s" from="0 50 50" to="180 50 50" type="rotate" id="strokeBox" attributeType="XML" begin="rectBox.end"></animateTransform>
+               </rect>
+                <rect x="27" y="27" fill="#fff" width="46" height="50">
+               <animate attributeName="height" dur="1.3s" attributeType="XML" from="50" to="0" id="rectBox" fill="freeze" begin="0s;strokeBox.end"></animate>
+               </rect>
+             </svg></span><br>Подождите<br><small>идет загрузка</small></div></div>
+            <div class="form__head">
+                <input type="text" id="message" name="message" placeholder="Агент ID" />
+                <button type="submit" id="button" onclick="today()">Сегодня</button>
+                <button type="submit" id="button2" onclick="week()">7 дней </button>
+                <button type="submit" id="button3" onclick="month()">30 дней</button>
+                <button type="submit" onclick="window.location.reload()">Обновить</button>
+            </div>
+            <table>
+                <tr>
+                    <th>Номер</th>
+                    <th>CSI</th>
+                    <th>Дата время</th>
+                    <th>ФИО</th>
+                    <th>Агент ID</th>
+                    <th>Группа</th>
+                </tr>
+
+                <tr>
+                    <td id="number"></td>
+                    <td id="csi"></td>
+                    <td id="date"></td>
+                    <td id="name"></td>
+                    <td id="agent_Id"></td>
+                    <td id="group"></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- form2 -->
+        <div class="form_2">
+            <select id="select">
+                <option>ОВиКК</option>
+                <option>ЮГ2</option>
+                <option>ЮГ3</option>
+            </select>
+
+            <select id="time">
+                <option value="http://172.28.141.23:8282/api/v1/1team/">24 часа</option>
+                <option value="http://172.28.141.23:8282/api/v1/7team/">7 Дней</option>
+                <option value="http://172.28.141.23:8282/api/v1/30team/">30 Дней</option>
+            </select>
+
+            <button type="button" value="validate123" id="val-button_f2" onclick="zapros()" class="btn">Найти</button>
+            <button type="submit" onclick="window.location.reload()">Обновить</button>
+            <input type="text" name="daterange2" value="03/01/2021 - 03/15/2021" />
+            <table>
+                <tr>
+                    <th>CSI</th>
+                    <th>Количество оценок</th>
+                    <th>Агент ID</th>
+                    <th>ФИО</th>
+                    <th>Группа</th>
+                    <th>Руководитель</th>
+                </tr>
+
+                <tr>
+                    <td id="csi_f2"></td>
+                    <td id="point_f2"></td>
+                    <td id="agent_Id_f2"></td>
+                    <td id="name_f2"></td>
+                    <td id="group_f2"></td>
+                    <td id="manag_f2"></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- form3 -->
+
+        <div class="form_3">
+            <button type="submit" id="button_f3" onclick="today_csi()">Сегодня</button>
+            <button type="submit" id="button2_f3" onclick="week_csi()">7 дней </button>
+            <button type="submit" id="button3_f3" onclick="month_csi()">30 дней</button>
+            <button type="submit" onclick="window.location.reload()">Обновить</button>
+            <input type="text" name="daterange" value="03/01/2021 - 03/15/2021" />
+            <table>
+                <tr>
+                    <th>CSI</th>
+                    <th>Количество оценок</th>
+                    <th>Группа</th>
+                    <th>ФИО</th>
+
+                </tr>
+
+                <tr>
+                    <td id="csi_f3"></td>
+                    <td id="point_f3"></td>
+                    <td id="group_f3"></td>
+                    <td id="name_f3"></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="chartdiv"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+    <script src="./js/form1.js"></script>
+    <script src="./js/form2.js"></script>
+    <script src="./js/form3.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script>
+        // Store a copy of the fetch function
+var _oldFetch = fetch; 
+
+// Create our new version of the fetch function
+window.fetch = function(){
+
+    // Create hooks
+    var fetchStart = new Event( 'fetchStart', { 'view': document, 'bubbles': true, 'cancelable': false } );
+    var fetchEnd = new Event( 'fetchEnd', { 'view': document, 'bubbles': true, 'cancelable': false } );
+
+    // Pass the supplied arguments to the real fetch function
+    var fetchCall = _oldFetch.apply(this, arguments);
+
+    // Trigger the fetchStart event
+    document.dispatchEvent(fetchStart);
+
+    fetchCall.then(function(){
+        // Trigger the fetchEnd event
+        document.dispatchEvent(fetchEnd);
+    }).catch(function(){
+        // Trigger the fetchEnd event
+        document.dispatchEvent(fetchEnd);
+    });
+
+    return fetchCall;
+};
+
+document.addEventListener('fetchStart', function() {
+    console.log("Show spinner");
+    document.getElementById('p_prldr').style.display = 'block'
+
+});
+
+document.addEventListener('fetchEnd', function() {
+    console.log("Hide spinner");
+    document.getElementById('p_prldr').style.display = 'none'
+});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form3</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+<style>
+</style>
+<body>
+  <div id="container">
+
+  </div>
+  <input type="text" name="datefilter" value="01/01/2018 - 01/15/2018" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script>
+  fetch('http://172.28.141.23:8282/api/v1/csi/2021-02-01/2021-02-28').then(
+                            res=>{
+                                res.json().then(
+    
+                                    data =>{console.log(data);
+    
+                                            var cont = '';
+                                            var cont2 = '';
+
+                                        
+                                        for (let i = 0; i < data.length; i++) {
+                                            var obeyct = {
+                                                "country": data[i][2],
+                                                "visits": data[i][0]
+                                            }
+                                            console.log(conect);
+                                           var conect = obeyct.map(function (elem){
+                                              return elem
+                                            })
+                                            // cont +=  data[i][0];
+                                            // cont2 +=  data[i][4];
+                                            document.getElementById('container').innerHTML += obeyct
+                                        }
+                                       
+                                       
+                                    }
+                                )
+                            }
+                        )
+  </script>
+
+
+</body>
+
+</html>
